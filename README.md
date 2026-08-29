@@ -171,3 +171,20 @@ serveurs de GitHub.
 - Multi-comptes (courant, épargne, carte...)
 - Suivi d'investissements (actions, crypto)
 - Synchronisation / sauvegarde cloud
+
+## Page de téléchargement (site web public)
+
+Le fichier `index.html` à la racine du projet est une page de téléchargement
+autonome, avec détection automatique du système d'exploitation du visiteur et
+un bouton par plateforme (Windows `.exe`, macOS `.dmg`, Linux `.deb`). Les
+boutons pointent vers les liens **permanents** de la dernière Release GitHub
+(mis à jour automatiquement par le workflow à chaque build réussi).
+
+### Mettre la page en ligne gratuitement avec GitHub Pages
+
+1. Sur ton dépôt GitHub, va dans **Settings** > **Pages** (menu de gauche)
+2. Sous "Build and deployment" > "Source", choisis **"Deploy from a branch"**
+3. Sous "Branch", choisis **`main`** et le dossier **`/ (root)`**, puis **Save**
+4. Attends 1 à 2 minutes, puis rafraîchis la page : une adresse du type
+   `https://bartbayemi-ctrl.github.io/Gestion-Argent/` apparaît en haut —
+   c'est l'adresse publique de ta page de téléchargement, à partager librement.

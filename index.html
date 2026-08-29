@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion d'Argent — Téléchargement</title>
+<meta name="description" content="Téléchargez Gestion d'Argent, l'appli de bureau gratuite et open source pour suivre vos dépenses, revenus et budgets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EBF2EA;
+    --paper-white: #FFFDF8;
+    --ink: #1B2430;
+    --ink-soft: #566058;
+    --rule: #B9CCB9;
+    --blue: #2E6FB0;
+    --blue-deep: #244F80;
+    --emerald: #1D8A6A;
+    --stamp-red: #B5433C;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 37px,
+        rgba(90, 120, 95, 0.13) 38px
+      );
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Header ---------- */
+  header.top {
+    padding: 28px 0 0;
+  }
+  .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .brand .mark {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 64px 0 8px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--emerald);
+    font-weight: 600;
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 3.1rem);
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    line-height: 1.12;
+  }
+  .sub {
+    max-width: 480px;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+  }
+
+  /* ---------- Receipt card (signature element) ---------- */
+  .receipt-shell {
+    padding: 52px 0 40px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.6s ease-out 0.15s forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .receipt-shell, .row-anim { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .receipt {
+    background: var(--paper-white);
+    border-radius: var(--radius) var(--radius) 0 0;
+    box-shadow: 0 18px 40px -18px rgba(27, 36, 48, 0.35);
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .receipt-head {
+    padding: 26px 30px 18px;
+    text-align: center;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .receipt-head .title {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .rows { padding: 6px 30px 24px; display: flex; flex-direction: column; }
+
+  .row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: rowIn 0.45s ease-out forwards;
+  }
+  .row:last-child { border-bottom: none; }
+  .row:nth-child(1) { animation-delay: .35s; }
+  .row:nth-child(2) { animation-delay: .48s; }
+  .row:nth-child(3) { animation-delay: .61s; }
+  @keyframes rowIn { to { opacity: 1; transform: translateY(0); } }
+
+  .row .os-name {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 0.98rem;
+    white-space: nowrap;
+  }
+  .row .leader {
+    border-bottom: 1px dotted var(--ink-soft);
+    height: 1px;
+    margin-top: 4px;
+    opacity: 0.55;
+  }
+  .row .ext {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .badge-row { display: none; }
+
+  .btn-dl {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: white;
+    background: var(--blue);
+    padding: 10px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background 0.15s ease, transform 0.1s ease;
+    display: inline-block;
+  }
+  .btn-dl:hover { background: var(--blue-deep); }
+  .btn-dl:active { transform: scale(0.97); }
+
+  .badge-reco {
+    position: absolute;
+    top: -12px;
+    right: 22px;
+    background: var(--stamp-red);
+    color: white;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 11px;
+    border-radius: 5px;
+    transform: rotate(-3deg);
+    box-shadow: 0 4px 10px -4px rgba(0,0,0,0.4);
+    display: none;
+  }
+  .row.recommande .badge-row {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-left: 8px;
+  }
+
+  .receipt-inner-perf {
+    height: 16px;
+    background-color: var(--paper-white);
+    clip-path: polygon(
+      0% 0%, 100% 0%, 100% 40%,
+      95% 100%, 90% 40%, 85% 100%, 80% 40%, 75% 100%, 70% 40%, 65% 100%,
+      60% 40%, 55% 100%, 50% 40%, 45% 100%, 40% 40%, 35% 100%, 30% 40%,
+      25% 100%, 20% 40%, 15% 100%, 10% 40%, 5% 100%, 0% 40%
+    );
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Features ---------- */
+  .features {
+    padding: 56px 0 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .features h2 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: center;
+    margin: 0 0 30px;
+    font-weight: 600;
+  }
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 640px) {
+    .feat-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
+  .feat {
+    text-align: left;
+  }
+  .feat .k {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .feat .d {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 34px 0 50px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer a { text-decoration: underline; text-underline-offset: 3px; }
+  footer a:hover { color: var(--blue); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <div class="brand"><span class="mark">€</span> GESTION D'ARGENT</div>
+    <div>RELEVÉ D'INSTALLATION Nº 1</div>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <p class="eyebrow">Application de bureau · Gratuite · Open source</p>
+  <h1>Votre budget,<br>noir sur blanc.</h1>
+  <p class="sub">Comptes, budgets par catégorie et bilan mensuel — dans une appli de bureau qui garde tout en local, sans compte ni cloud.</p>
+</section>
+
+<div class="receipt-shell wrap">
+  <div class="receipt" id="receipt">
+    <div class="receipt-head">
+      <span class="title">Choisissez votre système</span>
+    </div>
+    <div class="rows">
+
+      <div class="row" data-os="windows">
+        <span class="os-name">Windows<span class="badge-row" id="badge-windows">recommandé</span></span>
+        <span class="leader"></span>
+        <a class="btn-dl" href="https://github.com/bartbayemi-ctrl/Gestion-Argent/releases/latest/download/GestionArgent-Windows.exe">
+          Télécharger
+          <span class="ext">.exe</span>
+        </a>
+      </div>
+
+      <div class="row" data-os="mac">
+        <span class="os-name">macOS<span class="badge-row" id="badge-mac">recommandé</span></span>
+        <span class="leader"></span>
+        <a class="btn-dl" href="https://github.com/bartbayemi-ctrl/Gestion-Argent/releases/latest/download/GestionArgent-macOS.dmg">
+          Télécharger
+          <span class="ext">.dmg</span>
+        </a>
+      </div>
+
+      <div class="row" data-os="linux">
+        <span class="os-name">Linux<span class="badge-row" id="badge-linux">recommandé</span></span>
+        <span class="leader"></span>
+        <a class="btn-dl" href="https://github.com/bartbayemi-ctrl/Gestion-Argent/releases/latest/download/GestionArgent-Linux.deb">
+          Télécharger
+          <span class="ext">.deb</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <div class="receipt-inner-perf"></div>
+</div>
+
+<section class="features wrap">
+  <h2>Ce que contient l'appli</h2>
+  <div class="feat-grid">
+    <div class="feat">
+      <div class="k">Tableau de bord</div>
+      <div class="d">Solde, revenus et dépenses du mois en un coup d'œil.</div>
+    </div>
+    <div class="feat">
+      <div class="k">Budgets par catégorie</div>
+      <div class="d">Une limite mensuelle par poste, avec alerte en cas de dépassement.</div>
+    </div>
+    <div class="feat">
+      <div class="k">100% local</div>
+      <div class="d">Vos données restent sur votre machine, dans un simple fichier.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 Gestion d'Argent — projet personnel</span>
+  <a href="https://github.com/bartbayemi-ctrl/Gestion-Argent" target="_blank" rel="noopener">Code source sur GitHub →</a>
+</footer>
+
+<script>
+  (function () {
+    var ua = navigator.userAgent || "";
+    var os = null;
+    if (/Win/i.test(ua)) os = "windows";
+    else if (/Mac/i.test(ua)) os = "mac";
+    else if (/Linux|X11/i.test(ua)) os = "linux";
+
+    if (os) {
+      var row = document.querySelector('.row[data-os="' + os + '"]');
+      if (row) {
+        row.classList.add("recommande");
+        row.style.order = "-1";
+      }
+    } else {
+      ["windows", "mac", "linux"].forEach(function (o) {
+        var b = document.getElementById("badge-" + o);
+        if (b) b.style.display = "none";
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
