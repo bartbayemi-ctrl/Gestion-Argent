@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="16" styleClass="page-dashboard"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gestionargent.controller.BudgetsController">
+    <padding>
+        <Insets top="28" right="32" bottom="28" left="32"/>
+    </padding>
+
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Label text="Budgets" styleClass="titre-page"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="filtreMois" prefWidth="130"/>
+        <ComboBox fx:id="filtreAnnee" prefWidth="90"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="carte">
+        <Label text="Nouveau budget :" styleClass="label-champ"/>
+        <ComboBox fx:id="champNouvelleCategorie" prefWidth="180" promptText="Catégorie"/>
+        <TextField fx:id="champNouveauMontant" promptText="Montant limite (€)" prefWidth="160"/>
+        <Button text="Ajouter" onAction="#ajouterBudget" styleClass="bouton-principal"/>
+        <Label fx:id="labelErreur" styleClass="texte-erreur" wrapText="true"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-transparent">
+        <VBox fx:id="listeBudgets" spacing="12"/>
+    </ScrollPane>
+</VBox>

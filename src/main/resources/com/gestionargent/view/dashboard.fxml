@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<ScrollPane fitToWidth="true" styleClass="scroll-transparent"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gestionargent.controller.DashboardController">
+    <VBox spacing="20" styleClass="page-dashboard">
+        <padding>
+            <Insets top="28" right="32" bottom="28" left="32"/>
+        </padding>
+
+        <Label fx:id="labelPeriode" styleClass="titre-page" text="Tableau de bord"/>
+
+        <HBox spacing="16">
+            <VBox styleClass="carte-stat" HBox.hgrow="ALWAYS">
+                <Label text="Solde actuel" styleClass="label-stat"/>
+                <Label fx:id="labelSolde" text="0,00 €" styleClass="valeur-stat"/>
+            </VBox>
+            <VBox styleClass="carte-stat" HBox.hgrow="ALWAYS">
+                <Label text="Revenus (mois)" styleClass="label-stat"/>
+                <Label fx:id="labelRevenus" text="0,00 €" styleClass="valeur-stat-positive"/>
+            </VBox>
+            <VBox styleClass="carte-stat" HBox.hgrow="ALWAYS">
+                <Label text="Dépenses (mois)" styleClass="label-stat"/>
+                <Label fx:id="labelDepenses" text="0,00 €" styleClass="valeur-stat-negative"/>
+            </VBox>
+        </HBox>
+
+        <VBox fx:id="zoneAlertes" spacing="8"/>
+
+        <HBox spacing="24">
+            <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="carte">
+                <Label text="Répartition des dépenses" styleClass="titre-section"/>
+                <PieChart fx:id="graphiqueRepartition" legendVisible="true" labelsVisible="true" prefHeight="300"/>
+            </VBox>
+
+            <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="carte">
+                <Label text="Transactions récentes" styleClass="titre-section"/>
+                <VBox fx:id="listeTransactionsRecentes" spacing="4"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

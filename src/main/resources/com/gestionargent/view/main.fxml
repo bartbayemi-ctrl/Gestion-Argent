@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gestionargent.controller.MainController" styleClass="fond-principal">
+
+    <left>
+        <VBox fx:id="barreNavigation" spacing="4" styleClass="barre-navigation" prefWidth="220">
+            <padding>
+                <Insets top="24" right="12" bottom="24" left="12"/>
+            </padding>
+
+            <Label text="💰 Gestion d'Argent" styleClass="titre-nav"/>
+            <Region prefHeight="20"/>
+
+            <ToggleButton fx:id="boutonDashboard" text="📊  Tableau de bord" onAction="#afficherDashboard" styleClass="bouton-nav" maxWidth="Infinity"/>
+            <ToggleButton fx:id="boutonTransactions" text="💳  Transactions" onAction="#afficherTransactions" styleClass="bouton-nav" maxWidth="Infinity"/>
+            <ToggleButton fx:id="boutonBudgets" text="🎯  Budgets" onAction="#afficherBudgets" styleClass="bouton-nav" maxWidth="Infinity"/>
+            <ToggleButton fx:id="boutonCategories" text="🏷️  Catégories" onAction="#afficherCategories" styleClass="bouton-nav" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="zoneContenu" styleClass="zone-contenu"/>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,265 @@
+/* ===== Palette générale ===== */
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-background-color: #F4F5F7;
+}
+
+.fond-principal {
+    -fx-background-color: #F4F5F7;
+}
+
+/* ===== Écran de connexion ===== */
+.conteneur-login {
+    -fx-background-color: white;
+}
+
+.icone-app {
+    -fx-font-size: 40px;
+}
+
+.titre-login {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1F2430;
+}
+
+.sous-titre-login {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7280;
+}
+
+.texte-erreur {
+    -fx-text-fill: #E24B4A;
+    -fx-font-size: 12px;
+}
+
+/* ===== Boutons ===== */
+.bouton-principal {
+    -fx-background-color: #378ADD;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+.bouton-principal:hover {
+    -fx-background-color: #2C6FB0;
+}
+
+.bouton-secondaire {
+    -fx-background-color: #E9EAEE;
+    -fx-text-fill: #1F2430;
+    -fx-background-radius: 8;
+    -fx-padding: 9 16 9 16;
+    -fx-cursor: hand;
+}
+.bouton-secondaire:hover {
+    -fx-background-color: #D9DBE1;
+}
+
+.bouton-danger {
+    -fx-background-color: #FCE9E9;
+    -fx-text-fill: #C43D3C;
+    -fx-background-radius: 8;
+    -fx-padding: 9 16 9 16;
+    -fx-cursor: hand;
+}
+.bouton-danger:hover {
+    -fx-background-color: #F7D2D2;
+}
+
+.bouton-icone {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9CA3AF;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
+}
+.bouton-icone:hover {
+    -fx-text-fill: #E24B4A;
+}
+
+/* ===== Navigation latérale ===== */
+.barre-navigation {
+    -fx-background-color: #1F2430;
+}
+
+.titre-nav {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 8;
+}
+
+.bouton-nav {
+    -fx-background-color: transparent;
+    -fx-text-fill: #C7CBD4;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 12 10 12;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.bouton-nav:hover {
+    -fx-background-color: #2A2F3D;
+}
+.bouton-nav:selected {
+    -fx-background-color: #378ADD;
+    -fx-text-fill: white;
+}
+
+/* ===== Pages générales ===== */
+.page-dashboard {
+    -fx-background-color: #F4F5F7;
+}
+
+.titre-page {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1F2430;
+}
+
+.titre-section {
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1F2430;
+}
+
+.texte-secondaire {
+    -fx-text-fill: #8B8FA3;
+    -fx-font-size: 12px;
+}
+
+.label-champ {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #6B7280;
+}
+
+/* ===== Cartes ===== */
+.carte, .carte-stat, .carte-budget {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+}
+
+.label-stat {
+    -fx-text-fill: #8B8FA3;
+    -fx-font-size: 12px;
+}
+
+.valeur-stat {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1F2430;
+}
+
+.valeur-stat-positive {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1D9E75;
+}
+
+.valeur-stat-negative {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E24B4A;
+}
+
+/* ===== Alertes budget ===== */
+.alerte-budget {
+    -fx-background-color: #FEF3E2;
+    -fx-text-fill: #B45309;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+}
+
+/* ===== Transactions ===== */
+.ligne-transaction {
+    -fx-padding: 8 0 8 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.desc-transaction {
+    -fx-font-size: 13px;
+    -fx-text-fill: #1F2430;
+}
+
+.montant-positif {
+    -fx-text-fill: #1D9E75;
+    -fx-font-weight: 600;
+}
+
+.montant-negatif {
+    -fx-text-fill: #E24B4A;
+    -fx-font-weight: 600;
+}
+
+.table-transactions {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+}
+
+/* ===== Budgets ===== */
+.nom-budget {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1F2430;
+}
+
+.barre-budget > .bar {
+    -fx-background-color: #378ADD;
+    -fx-background-radius: 4;
+}
+.barre-budget > .track {
+    -fx-background-color: #E9EAEE;
+    -fx-background-radius: 4;
+}
+
+.barre-depassee > .bar {
+    -fx-background-color: #E24B4A;
+    -fx-background-radius: 4;
+}
+.barre-depassee > .track {
+    -fx-background-color: #FCE9E9;
+    -fx-background-radius: 4;
+}
+
+/* ===== Catégories ===== */
+.ligne-categorie {
+    -fx-background-color: #FAFAFB;
+    -fx-background-radius: 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.badge-defaut {
+    -fx-background-color: #EEF2FF;
+    -fx-text-fill: #4F5FD1;
+    -fx-font-size: 10px;
+    -fx-padding: 3 8 3 8;
+    -fx-background-radius: 20;
+}
+
+/* ===== Dialogue transaction ===== */
+.conteneur-dialogue {
+    -fx-background-color: white;
+}
+
+.toggle-type {
+    -fx-background-color: #E9EAEE;
+    -fx-text-fill: #6B7280;
+    -fx-padding: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.toggle-type:selected {
+    -fx-background-color: #378ADD;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+}
+
+/* ===== ScrollPane transparent ===== */
+.scroll-transparent, .scroll-transparent > .viewport {
+    -fx-background-color: transparent;
+}
